@@ -7,7 +7,7 @@ import os
 import json
 app = Flask(__name__)
 
-headings = ("MatchId", "Score", "Pos", "Start Time", "Duration")
+headings = ("MatchId", "Score", "Pos", "Start Time", "Duration", "Game Type")
 
 @app.route("/")
 def table():
@@ -31,6 +31,11 @@ def parse_records(account_id):
             Duration = datetime.utcfromtimestamp(head["end_time"]-head["start_time"]).strftime('%H:%M:%S')
             players = head["accounts"]
             result = head["result"]
+            gametype = head["config"]["category"]
+            if gametype==1:
+                gametype="Friendly"
+            elif gametype==2:
+                gametype="Ranked"
 
             seat = -1
             for x in players:
