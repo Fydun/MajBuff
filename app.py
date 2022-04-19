@@ -11,7 +11,7 @@ headings = ("MatchId", "Score", "Pos", "Start Time", "Duration", "Game Type")
 
 @app.route("/")
 def table():
-    heads,datas = parse_records(118331092)
+    heads,datas = parse_records(124876804)
     return render_template("table.html", headings=headings, data=datas)
 
 
